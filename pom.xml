@@ -14,6 +14,7 @@
 	</parent> -->
 	<dependencies>
 	<dependency>
+		
 			<groupId>ai.api</groupId>
 			<artifactId>libai</artifactId>
 			<version>${project.version}</version>
