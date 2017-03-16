@@ -4,12 +4,20 @@
 	<artifactId>web-client</artifactId>
 	<packaging>war</packaging>
 	<name>Api.Ai Web Client Sample</name>
-	<parent>
+	<groupId>ai.api.libai.examples</groupId>
+		<!-- <artifactId>libai-example</artifactId> -->
+		<version>1.4.8</version>
+<!-- 	<parent>
 		<groupId>ai.api.libai.examples</groupId>
 		<artifactId>libai-example</artifactId>
 		<version>1.4.8</version>
-	</parent>
+	</parent> -->
 	<dependencies>
+	<dependency>
+			<groupId>ai.api</groupId>
+			<artifactId>libai</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
