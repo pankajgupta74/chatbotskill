@@ -12,9 +12,14 @@
 		<artifactId>libai-example</artifactId>
 		<version>1.4.8</version>
 	</parent> -->
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jdk.version>1.7</jdk.version>
+		<maven-compiler-plugin-version>3.6.0</maven-compiler-plugin-version>
+		<maven-assembly-plugin-version>2.4</maven-assembly-plugin-version>
+	</properties>
 	<dependencies>
 	<dependency>
-		
 			<groupId>ai.api</groupId>
 			<artifactId>libai</artifactId>
 			<version>${project.version}</version>
