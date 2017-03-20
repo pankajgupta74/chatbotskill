@@ -37,6 +37,16 @@
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>
+	<profiles>
+		<profile>
+			<!-- When built in OpenShift the 'openshift' profile will be used when 
+				invoking mvn. -->
+			<!-- Use this profile for any OpenShift specific customization your app 
+				will need. -->
+			<!-- By default that is to put the resulting archive into the 'webapps' 
+				folder. -->
+			<!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
+			<id>openshift</id>
 	<build>
 		<finalName>web-client</finalName>
 		<plugins>
@@ -57,6 +67,8 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		
 	</build>
-
+</profile>
+	</profiles>
 </project>
