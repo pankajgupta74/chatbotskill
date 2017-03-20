@@ -64,6 +64,8 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
 					<webXml>WebContent\WEB-INF\web.xml</webXml>
+					<outputDirectory>webapps</outputDirectory>
+							<warName>ROOT</warName>
 				</configuration>
 			</plugin>
 		</plugins>
