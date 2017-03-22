@@ -33,9 +33,11 @@ public class WebhookSample extends AIWebhookServlet {
 	@Override
 	protected void doWebhook(AIWebhookRequest input, Fulfillment output) {
 		try {
+			System.out.println("input request --Query param :$$$$$$$$$"+input);
 			String serviceResp = null;
-			input.getResult().getParameters().get("query");
+//			input.getResult().getParameters().get("query");
 			String policyNo = input.getResult().getParameters().get("query").toString();
+			System.out.println("input request --Query param :$$$$$$$$$"+input.getResult().getParameters().get("query").toString());
 			CTPServiceAction ctpserviceAction = new CTPServiceAction();
 			serviceResp = ctpserviceAction.processRequest(policyNo);			
 			output.setSpeech("premium due is: " + serviceResp);
@@ -44,3 +46,4 @@ public class WebhookSample extends AIWebhookServlet {
 		}
 	}
 }
+
