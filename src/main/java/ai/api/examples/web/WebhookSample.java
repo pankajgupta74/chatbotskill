@@ -28,10 +28,19 @@ import ai.api.web.AIWebhookServlet;
 
 @WebServlet("/webhook")
 public class WebhookSample extends AIWebhookServlet {
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  @Override
-  protected void doWebhook(AIWebhookRequest input, Fulfillment output) {
-    output.setSpeech("You said: " + input.getResult().getFulfillment().getSpeech());
-  }
+	@Override
+	protected void doWebhook(AIWebhookRequest input, Fulfillment output) {
+		try {
+			String serviceResp = null;
+			input.getResult().getParameters().get("query");
+			String policyNo = input.getResult().getParameters().get("query").toString();
+			CTPServiceAction ctpserviceAction = new CTPServiceAction();
+			serviceResp = ctpserviceAction.processRequest(policyNo);			
+			output.setSpeech("premium due is: " + serviceResp);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
