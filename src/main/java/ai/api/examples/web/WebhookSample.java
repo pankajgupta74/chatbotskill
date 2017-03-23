@@ -39,12 +39,13 @@ public class WebhookSample extends AIWebhookServlet {
 			String serviceResp = null;
 //			input.getResult().getParameters().get("query");
 			
-			String parameterName = (String)input.getOriginalRequest().getData().get("query");
+			//String parameterName = (String)input.getOriginalRequest().getData().get("query");
 			
-			System.out.println("Parameter from original request : " + parameterName);
+			//System.out.println("Parameter from original request : " + parameterName);
 			
 			
 			String policyNo = input.getResult().getParameters().get("query").toString();
+			policyNo =policyNo.replaceAll("\"", "");
 			System.out.println("Policy Number is: " + policyNo);
 			System.out.println("input request --Query param :$$$$$$$$$"+input.getResult().getParameters().get("query").toString());
 			CTPServiceAction ctpserviceAction = new CTPServiceAction();
