@@ -1,5 +1,7 @@
 package ai.api.examples.web;
 
+import java.util.Map;
+
 /***********************************************************************************************************************
  *
  * API.AI Java SDK - client-side libraries for API.AI
@@ -25,34 +27,50 @@ import javax.servlet.annotation.WebServlet;
 
 import ai.api.model.Fulfillment;
 import ai.api.web.AIWebhookServlet;
+import api.consumer.common.Commons;
+import api.consumer.service.CTPServiceAction;
 
 @WebServlet("/webhook")
 public class WebhookSample extends AIWebhookServlet {
 	private static final long serialVersionUID = 1L;
+	//private static JedisPool pool = null;
 
 	@Override
 	protected void doWebhook(AIWebhookRequest input, Fulfillment output) {
-		
-		
+		/*pool = new JedisPool(new JedisPoolConfig(), "localhost", 6379,10*1000);
+		Jedis jedis = null;
+		String value = "";
+		jedis = pool.getResource();*/
+		//input.getSessionId()
+		String action=input.getResult().getAction();
 		try {
+			if(action.equals("PolicyNumberValidation")){
 			System.out.println("input request --Query param :$$$$$$$$$: "+input);
 			String serviceResp = null;
-//			input.getResult().getParameters().get("query");
-			
-			//String parameterName = (String)input.getOriginalRequest().getData().get("query");
-			
-			//System.out.println("Parameter from original request : " + parameterName);
-			
-			
-			String policyNo = input.getResult().getParameters().get("query").toString();
-			policyNo =policyNo.replaceAll("\"", "");
-			System.out.println("Policy Number is: " + policyNo);
-			System.out.println("input request --Query param :$$$$$$$$$"+input.getResult().getParameters().get("query").toString());
+			String policyNoJSON = input.getResult().getParameters().get("PolicyNumber").toString();
+			System.out.println("parameter value:"+policyNoJSON);
+			Map responsejson = Commons.getGsonData(policyNoJSON);
+			String policyNumber=(String)responsejson.get("Given-PolicyNumber");
+			policyNumber =policyNumber.replaceAll("\"", "");
+			System.out.println("Policy Number is: " + policyNumber);
 			CTPServiceAction ctpserviceAction = new CTPServiceAction();
-			serviceResp = ctpserviceAction.processRequest(policyNo);			
-			output.setSpeech("premium due is: " + serviceResp);
+			serviceResp = ctpserviceAction.getOTP(policyNumber);
+			/*String cacheKey = getCacheKey (policyNo);
+	        value = jedis.get(cacheKey);
+	        if (value == null) {
+	        	jedis.set(cacheKey, serviceResp);
+	        }
+	        else{
+	        	System.out.println("OTP-************"+value);	        	
+	        }*/
+			output.setSpeech("OTP is sent to your Registered Mobile Number. Please provide your OTP for verification");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	protected String getCacheKey (String policyNum) {
+        String cacheKey = policyNum +"_OTP";
+        return cacheKey;
+    }
 }
