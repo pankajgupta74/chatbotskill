@@ -22,7 +22,6 @@ package ai.api.examples.web;
  ***********************************************************************************************************************/
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
@@ -33,10 +32,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import ai.api.AIServiceException;
 import ai.api.GsonFactory;
 import ai.api.model.AIResponse;
 import ai.api.web.AIServiceServlet;
+import api.consumer.service.CTPServiceAction;
 
 
 /**
@@ -58,7 +57,7 @@ public class ServiceServletSample extends AIServiceServlet {
 //      AIResponse aiResponse = request(request.getParameter("query"), request.getSession());
       String policyNo = request.getParameter("query");
       CTPServiceAction ctpserviceAction = new CTPServiceAction();
-      serviceResp =  ctpserviceAction.processRequest(policyNo);
+      serviceResp =  ctpserviceAction.getOTP(policyNo);
       String temp = "{    \"id\": \"80078a42-0aa6-465e-8e6e-b98b417f8987\",    \"timestamp\": \"2017-03-15T11:05:15.643Z\",    \"result\": {        \"source\": \"domains\",        \"resolvedQuery\": \"hello\",        \"action\": \"smalltalk.greetings\",        \"parameters\": {            \"simplified\": \"hello\"        },        \"metadata\": {},        \"fulfillment\": {            \"speech\": \""+serviceResp+"\"        },        \"score\": 1    },    \"status\": {        \"code\": 200,        \"errorType\": \"success\"    },    \"sessionId\": \"352D8F08F18C302AFEC1FE07CC7FD477\"}";
       AIResponse aiResponse = GSON.fromJson(temp, AIResponse.class);
       response.setContentType("text/plain");
@@ -76,3 +75,4 @@ public class ServiceServletSample extends AIServiceServlet {
     doGet(request, response);
   }
 }
+
