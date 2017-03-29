@@ -82,11 +82,11 @@ public class WebhookSample extends AIWebhookServlet {
 					}
 				}
 			}*/
-				System.out.println("Setting speech now");
+				/*System.out.println("Setting speech now");
 				
 			output.setSpeech("Hello");
 			output.setDisplayText("hello");
-			
+			*/
 			/*	AIOutputContext aiout=new AIOutputContext();
 			String str="{\"CACHEOTP\": \""+serviceResp+"\"}";
 			aiout.setName("CACHEOTP");
@@ -94,8 +94,8 @@ public class WebhookSample extends AIWebhookServlet {
 			output.setContextOut(aiout);
 			Map map=new HashMap();
 			output.setData(map);*/
-			output.setSource("PolicyNumberValidation");
-				System.out.println("Have set everything includong context");
+			/*output.setSource("PolicyNumberValidation");
+				System.out.println("Have set everything includong context"); */
 			/*ResponseSpeech rm=new ResponseSpeech();
 			rm.setSpeech("OTP is sent to your Registered Mobile Number. Please provide your OTP for verification");
 			output.setMessages(rm);
@@ -103,6 +103,8 @@ public class WebhookSample extends AIWebhookServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}*/
+		
+		output.setSpeech("You said: " + input.getResult().getFulfillment().getSpeech());
 	}
 	protected String getCacheKey (String policyNum) {
         String cacheKey = policyNum +"_OTP";
