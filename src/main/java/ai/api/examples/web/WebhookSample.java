@@ -84,8 +84,8 @@ public class WebhookSample extends AIWebhookServlet {
 			}
 				System.out.println("Setting speech now");
 				
-			output.setSpeech("OTP is sent to your Registered Mobile Number. Please provide your OTP for verification");
-			output.setDisplayText("OTP is sent to your Registered Mobile Number. Please provide your OTP for verification");
+			output.setSpeech("Hello");
+			output.setDisplayText("hello");
 			
 				/*AIOutputContext aiout=new AIOutputContext();
 			String str="{\"CACHEOTP\": \""+serviceResp+"\"}";
