@@ -82,16 +82,20 @@ public class WebhookSample extends AIWebhookServlet {
 					}
 				}
 			}
+				System.out.println("Setting speech now");
+				
 			output.setSpeech("OTP is sent to your Registered Mobile Number. Please provide your OTP for verification");
 			output.setDisplayText("OTP is sent to your Registered Mobile Number. Please provide your OTP for verification");
-			/*AIOutputContext aiout=new AIOutputContext();
+			
+				/*AIOutputContext aiout=new AIOutputContext();
 			String str="{\"CACHEOTP\": \""+serviceResp+"\"}";
 			aiout.setName("CACHEOTP");
 			aiout.setParameters(Commons.getGsonData1(str));
-			output.setContextOut(aiout);
+			output.setContextOut(aiout); */
 			Map map=new HashMap();
-			output.setData(map);*/
+			output.setData(map);
 			output.setSource("PolicyNumberValidation");
+				System.out.println("Have set everything");
 			/*ResponseSpeech rm=new ResponseSpeech();
 			rm.setSpeech("OTP is sent to your Registered Mobile Number. Please provide your OTP for verification");
 			output.setMessages(rm);*/
