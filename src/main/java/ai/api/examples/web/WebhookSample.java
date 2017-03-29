@@ -98,11 +98,11 @@ public class WebhookSample extends AIWebhookServlet {
 				System.out.println("Have set everything includong context");
 			/*ResponseSpeech rm=new ResponseSpeech();
 			rm.setSpeech("OTP is sent to your Registered Mobile Number. Please provide your OTP for verification");
-			output.setMessages(rm);*/
+			output.setMessages(rm);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 	protected String getCacheKey (String policyNum) {
         String cacheKey = policyNum +"_OTP";
