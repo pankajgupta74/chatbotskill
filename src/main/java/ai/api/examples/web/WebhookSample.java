@@ -48,7 +48,7 @@ public class WebhookSample extends AIWebhookServlet {
 		String value = "";
 		jedis = pool.getResource();*/
 		//input.getSessionId()
-		String action=input.getResult().getAction();
+		/*String action=input.getResult().getAction();
 		try {
 			if(action.equals("PolicyNumberValidation")){
 			System.out.println("input request --Query param :$$$$$$$$$: "+input);
@@ -61,7 +61,7 @@ public class WebhookSample extends AIWebhookServlet {
 			System.out.println("Policy Number is: " + policyNumber);
 			CTPServiceAction ctpserviceAction = new CTPServiceAction();
 			
-			serviceResp = ctpserviceAction.getOTP(policyNumber);
+			serviceResp = ctpserviceAction.getOTP(policyNumber); */
 			/*String cacheKey = getCacheKey (policyNo);
 	        value = jedis.get(cacheKey);
 	        if (value == null) {
@@ -70,7 +70,7 @@ public class WebhookSample extends AIWebhookServlet {
 	        else{
 	        	System.out.println("OTP-************"+value);	        	
 	        }*/
-			System.out.println("OTP-************"+serviceResp);
+			/*System.out.println("OTP-************"+serviceResp);
 			List<AIOutputContext> outlist=input.getResult().getContexts();
 			for (AIOutputContext object : outlist) {
 				Iterator itr=object.getParameters().keySet().iterator();
@@ -81,19 +81,19 @@ public class WebhookSample extends AIWebhookServlet {
 						System.out.println("PPPPPPPPPPPPP"+object.getParameters().get("SYSOTP"));
 					}
 				}
-			}
+			}*/
 				System.out.println("Setting speech now");
 				
 			output.setSpeech("Hello");
 			output.setDisplayText("hello");
 			
-				AIOutputContext aiout=new AIOutputContext();
+			/*	AIOutputContext aiout=new AIOutputContext();
 			String str="{\"CACHEOTP\": \""+serviceResp+"\"}";
 			aiout.setName("CACHEOTP");
 			aiout.setParameters(Commons.getGsonData1(str));
 			output.setContextOut(aiout);
 			Map map=new HashMap();
-			output.setData(map);
+			output.setData(map);*/
 			output.setSource("PolicyNumberValidation");
 				System.out.println("Have set everything includong context");
 			/*ResponseSpeech rm=new ResponseSpeech();
