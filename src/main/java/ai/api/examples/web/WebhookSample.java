@@ -85,7 +85,7 @@ public class WebhookSample extends AIWebhookServlet {
 			String str="{\"CACHEOTP\": \""+serviceResp+"\"}";
 			aiout.setName("CACHEOTP");
 			aiout.setParameters(Commons.getGsonData1(str));
-			output.setContextOut(aiout);
+			//output.setContextOut(aiout);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
