@@ -1,5 +1,7 @@
 package ai.api.examples.web;
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 /***********************************************************************************************************************
@@ -25,6 +27,7 @@ import java.util.Map;
 
 import javax.servlet.annotation.WebServlet;
 
+import ai.api.model.AIOutputContext;
 import ai.api.model.Fulfillment;
 import ai.api.web.AIWebhookServlet;
 import api.consumer.common.Commons;
@@ -54,6 +57,7 @@ public class WebhookSample extends AIWebhookServlet {
 			policyNumber =policyNumber.replaceAll("\"", "");
 			System.out.println("Policy Number is: " + policyNumber);
 			CTPServiceAction ctpserviceAction = new CTPServiceAction();
+			
 			serviceResp = ctpserviceAction.getOTP(policyNumber);
 			/*String cacheKey = getCacheKey (policyNo);
 	        value = jedis.get(cacheKey);
@@ -63,7 +67,25 @@ public class WebhookSample extends AIWebhookServlet {
 	        else{
 	        	System.out.println("OTP-************"+value);	        	
 	        }*/
+			System.out.println("OTP-************"+serviceResp);
+			List<AIOutputContext> outlist=input.getResult().getContexts();
+			for (AIOutputContext object : outlist) {
+				Iterator itr=object.getParameters().keySet().iterator();
+				while(itr.hasNext()){
+					String name=itr.next().toString();
+					System.out.println("contextvariable++++++"+name);
+					if(name.equals("SYSOTP")){
+						System.out.println("PPPPPPPPPPPPP"+object.getParameters().get("SYSOTP"));
+					}
+				}
+			}
 			output.setSpeech("OTP is sent to your Registered Mobile Number. Please provide your OTP for verification");
+			output.setDisplayText("OTP is sent to your Registered Mobile Number. Please provide your OTP for verification");
+			AIOutputContext aiout=new AIOutputContext();
+			String str="{\"CACHEOTP\": \""+serviceResp+"\"}";
+			aiout.setName("CACHEOTP");
+			aiout.setParameters(Commons.getGsonData1(str));
+			output.setContextOut(aiout);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -74,3 +96,4 @@ public class WebhookSample extends AIWebhookServlet {
         return cacheKey;
     }
 }
+
