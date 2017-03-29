@@ -48,7 +48,7 @@ public class WebhookSample extends AIWebhookServlet {
 		String value = "";
 		jedis = pool.getResource();*/
 		//input.getSessionId()
-		/*String action=input.getResult().getAction();
+		String action=input.getResult().getAction();
 		try {
 			if(action.equals("PolicyNumberValidation")){
 			System.out.println("input request --Query param :$$$$$$$$$: "+input);
@@ -62,14 +62,14 @@ public class WebhookSample extends AIWebhookServlet {
 			CTPServiceAction ctpserviceAction = new CTPServiceAction();
 			
 			serviceResp = ctpserviceAction.getOTP(policyNumber);
-			String cacheKey = getCacheKey (policyNo);
+			/*String cacheKey = getCacheKey (policyNo);
 	        value = jedis.get(cacheKey);
 	        if (value == null) {
 	        	jedis.set(cacheKey, serviceResp);
 	        }
 	        else{
 	        	System.out.println("OTP-************"+value);	        	
-	        }
+	        }*/
 			System.out.println("OTP-************"+serviceResp);
 			List<AIOutputContext> outlist=input.getResult().getContexts();
 			for (AIOutputContext object : outlist) {
@@ -98,13 +98,12 @@ public class WebhookSample extends AIWebhookServlet {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}*/
-		System.out.println("you were here");
-		output.setSpeech("You said: " + input.getResult().getFulfillment().getSpeech());
+		}
 	}
 	protected String getCacheKey (String policyNum) {
         String cacheKey = policyNum +"_OTP";
         return cacheKey;
     }
 }
+
 
