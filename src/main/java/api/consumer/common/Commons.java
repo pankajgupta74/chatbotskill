@@ -179,6 +179,14 @@ public class Commons
 		System.out.println(data);			
 		return data;
 	}
+	@SuppressWarnings("unchecked")
+	public static Map getGsonData1(String jsonData)
+	{
+		JsonElement jsonElement=new JsonParser().parse(jsonData);
+		Map data=new Gson().fromJson(jsonElement,Map.class);
+		System.out.println(data);			
+		return data;
+	}
 	public static void main(String ar[])
 	{
 	}
